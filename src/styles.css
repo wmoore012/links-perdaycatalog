@@ -1,0 +1,94 @@
+:root {
+  /* Perday Catalog Design Tokens */
+  --layout-gutter-x: 1.25rem;
+  --layout-gutter-y: 1.25rem;
+  --ease-expo: cubic-bezier(0.19, 1, 0.22, 1);
+
+  --bg: #f2f2f2;
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+
+  --accent-violet: #7c3aed;
+  --accent-red: #ef4444;
+  --accent-amber: #f59e0b;
+  --accent-teal: #14b8a6;
+
+  --panel-bg: rgba(255,255,255,0.82);
+  --panel-border: rgba(228,228,231,0.72);
+}
+
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body {
+  margin: 0;
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background: var(--bg);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-root{width:100%;max-width:540px}
+.card {
+  position: relative;
+  background: var(--panel-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--panel-border);
+  border-radius: 24px;
+  padding: 2rem 1.5rem 1.25rem;
+  box-shadow: 0 20px 60px rgba(2,6,23,0.12);
+  overflow: visible;
+}
+
+.profile{display:flex;flex-direction:column;align-items:center;text-align:center;position:relative}
+.avatar-wrap{position:relative;width:180px;height:180px;margin-top:-8px}
+.avatar-ring{position:absolute;left:0;top:0;width:100%;height:100%;transform-origin:center;animation:spin 14s linear infinite}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.avatar{position:relative;z-index:2;border-radius:999px;border:6px solid rgba(0,0,0,0.06);width:160px;height:160px;object-fit:cover;box-shadow:0 20px 40px rgba(2,6,23,0.06)}
+.title{margin:18px 0 6px;font-size:20px;font-weight:700;color:var(--text-primary);letter-spacing:0.2px}
+.subtitle{margin:0;color:var(--text-secondary);font-size:13px}
+
+.links{margin-top:1.75rem;display:flex;flex-direction:column;gap:0.75rem;padding:0 0.5rem}
+.link{
+  display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:9999px;text-decoration:none;color:var(--text-primary);position:relative;overflow:hidden;
+  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(228,228,231,0.72);
+  transition: transform 200ms var(--ease-expo), box-shadow 200ms ease, background 200ms ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.link:focus{outline:none;box-shadow:0 0 0 6px rgba(124,58,237,0.12)}
+.icon-circle{width:52px;height:52px;border-radius:12px;display:inline-grid;place-items:center;background:linear-gradient(180deg,var(--accent-violet),#a78bfa);box-shadow:0 8px 24px rgba(124,58,237,0.08);flex-shrink:0}
+.icon-inner{width:36px;height:36px;display:inline-grid;place-items:center;color:#fff}
+.label{font-weight:600;color:var(--text-primary);font-size:16px}
+.link:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(2,6,23,0.08);background:rgba(255,255,255,0.98)}
+.link:active{transform:scale(0.97);box-shadow:0 2px 8px rgba(2,6,23,0.06);animation:button-press 180ms var(--ease-expo)}
+
+@keyframes button-press{0%{transform:scale(1)}50%{transform:scale(0.95)}100%{transform:scale(1)}}
+
+@media (prefers-reduced-motion: reduce){
+  .link{transition:none!important}
+  .avatar-ring{animation:none}
+}
+
+.footer{margin-top:1.25rem;text-align:center;color:var(--text-secondary);font-size:12px}
+
+@media (max-width:420px){
+  body{padding:14px}
+  .card{padding:1.25rem}
+  .title{font-size:18px}
+  .avatar-wrap{width:150px;height:150px}
+  .avatar{width:140px;height:140px}
+  .icon-circle{width:48px;height:48px}
+}
+
+/* subtle decorative gradient blobs */
+.card::before,.card::after{content:'';position:absolute;pointer-events:none;border-radius:50%;opacity:0.06}
+.card::before{width:220px;height:220px;left:-70px;top:-80px;background:radial-gradient(circle at 30% 30%, rgba(124,58,237,0.18), transparent)}
+.card::after{width:180px;height:180px;right:-50px;bottom:-50px;background:radial-gradient(circle at 30% 30%, rgba(255,120,90,0.08), transparent)}
+
